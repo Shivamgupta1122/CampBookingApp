@@ -1,0 +1,143 @@
+<form
+  class="needs-validation"
+  novalidate
+  [formGroup]="campForm"
+  (ngSubmit)="OnFormSubmit()"
+>
+<h2>Update camp Details:</h2>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="CampName">Camp Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="CampName"
+          formControlName="Title"
+          placeholder="Camp Name"
+          required
+          [ngClass]="getControlValidationClasses(titleControl)"
+        />
+        <div class="valid-feedback" *ngIf="textControl.valid">
+            Looks good!
+          </div>
+          <div class="invalid-feedback" *ngIf="textControl.touched && textControl.errors?.required">
+            This field is required
+          </div>
+      </div>
+      <div class="form-group">
+        <label for="WeekDayPrice">Price For WeekDays</label>
+        <input
+          type="text"
+          class="form-control"
+          id="WeekDayPrice"
+          formControlName="PriceForWeekDays"
+          placeholder="Price For WeekDays"
+          required
+          [ngClass]="getControlValidationClasses(weekdayControl)"
+        />
+        <div class="valid-feedback" *ngIf="textControl.valid">
+            Looks good!
+          </div>
+          <div class="invalid-feedback" *ngIf="textControl.touched && textControl.errors?.required">
+            This field is required
+          </div>
+      </div>
+      <div class="form-group">
+        
+          <label for="WeekendPrice">Price For Weekends</label>
+          <input
+            type="text"
+            class="form-control"
+            id="WeekendPrice"
+            formControlName="PriceForWeekends"
+            placeholder="Price For Weekends"
+            required
+            [ngClass]="getControlValidationClasses(weekendControl)"
+          />
+          <div class="valid-feedback" *ngIf="textControl.valid">
+              Looks good!
+            </div>
+            <div class="invalid-feedback" *ngIf="textControl.touched && textControl.errors?.required">
+              This field is required
+            </div>
+        </div>
+        <div class="form-group">
+        <label for="Capacity">Capacity</label>
+        <input
+          type="text"
+          class="form-control"
+          id="Capacity"
+          formControlName="Capacity"
+          placeholder="Capacity"
+          required
+          [ngClass]="getControlValidationClasses(capacityControl)"
+        />
+        <div class="valid-feedback" *ngIf="textControl.valid">
+            Looks good!
+          </div>
+          <div class="invalid-feedback" *ngIf="textControl.touched && textControl.errors?.required">
+            This field is required
+          </div>
+      </div>
+      <div class="form-group">
+        <label for="Description">Description</label>
+        <textarea
+          class="form-control"
+          id="Description"
+          rows="2"
+          formControlName="Description"
+          placeholder="Description"
+          required
+          [ngClass]="getControlValidationClasses(descriptionControl)"
+        ></textarea>
+        <div class="valid-feedback" *ngIf="textControl.valid">
+            Looks good!
+          </div>
+          <div class="invalid-feedback" *ngIf="textControl.touched && textControl.errors?.required">
+            This field is required
+          </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <button
+        type="button"
+        class="btn btn-link"
+        routerLink="/dashboard"
+      >
+        Back to DashBoard
+      </button>
+    </div>
+    <div class="row top-buffer">
+      <div class="col-sm-5">
+        <div class="custom-file">
+          <input
+            type="file"
+            class="custom-file-input"
+            id="customFile"
+            accept="image/*"
+            name="file"
+            required
+            #fileInput
+            (change)="onFileChange(fileInput.files[0])"
+          />
+          <label class="custom-file-label" for="customFile">{{
+            fileName
+          }}</label>
+        </div>
+      </div>
+      <div>
+        <img
+          height="200"
+          width="300"
+          class="border border-secondary rounded img"
+          [src]="imageUrl"
+        />
+        <p class="enterImage" *ngIf="enterImage">
+          Image will be displayed Here
+        </p>
+      </div>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary" >Submit</button>
+</form>

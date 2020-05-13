@@ -1,0 +1,60 @@
+<div class="container">
+    <div class="card"  style="padding: 4%;">
+        <div class="card-header">
+            <form (ngSubmit)="onSubmit(getBook.value)" #getBook="ngForm">
+                <div class="form-group">
+                    <label for="name">Reference Number</label>
+                    <input type="text" class="form-control" name="name" #ReferenceNumber="ngModel" id="name"
+                        placeholder="Enter Reference Number" ngModel required>
+                    <span class="help-block" style="color: red;"
+                        *ngIf="!ReferenceNumber.valid && ReferenceNumber.touched">Please Enter Reference Number</span>
+                </div>
+                <button type="submit" class="btn btn-primary" [disabled]="!getBook.valid">Submit</button>
+            </form>
+        </div>
+        <div class="card-body" *ngIf="bookingDetail">
+            <div class="BookingDetails">
+                <div class="form-group row">
+                    <label  class="col-sm-5 col-form-label ">CheckInDate</label>
+                    <div class="col-sm-6">
+                        <p>{{bookingDetail.checkInDate | date:'fullDate'}}</p>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-5 col-form-label ">CheckOutDate</label>
+                    <div class="col-sm-6">
+                        <p>{{bookingDetail.checkOutDate | date:'fullDate'}}</p>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label  class="col-sm-5 col-form-label ">TotalNights</label>
+                    <div class="col-sm-6">
+                        <p>{{bookingDetail.totalNights}}</p>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label  class="col-sm-5 col-form-label ">Number Of Person</label>
+                    <div class="col-sm-6">
+                        <p>{{bookingDetail.persons}}</p>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label  class="col-sm-5 col-form-label ">Country</label>
+                    <div class="col-sm-6">
+                        <td>{{bookingDetail.country}}</td>
+                        <p>{{bookingDetail.state}},{{bookingDetail.zipCode}}</p>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label  class="col-sm-5 col-form-label ">Cell Phone</label>
+                    <div class="col-sm-6">
+                        <p>{{bookingDetail.cellPhone}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div card="card-footer" style="margin-left: 35%;"  *ngIf="bookingDetail">
+            <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel Booking</button>
+        </div>
+    </div>
+    </div>

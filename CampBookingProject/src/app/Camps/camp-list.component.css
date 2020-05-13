@@ -1,0 +1,70 @@
+.FilterCamps{
+
+  float: left;
+
+  width: 30%;
+
+  height: 80%;
+
+  margin-left: 30px;
+
+  margin-top: 27px;   
+
+}
+
+
+
+.filterControls{
+
+  margin-bottom: 15px;
+
+  
+
+}
+
+
+
+.desc , td {
+
+  font-size: 85%;
+
+}
+
+
+
+th{
+
+  font-size: 85%;
+
+}
+
+
+
+
+
+
+
+.rating-list {
+
+display: inline-block;
+
+color: #ffd700;
+
+list-style: none;
+
+}
+
+.stars{
+
+  display: flow-root;
+
+  position: relative;
+
+  margin-left: 5%;
+
+}
+div.scrollmenu {
+  background-color: #333;
+  overflow: auto;
+  white-space: nowrap;
+}

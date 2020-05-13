@@ -1,0 +1,74 @@
+<form class="needs-validation" novalidate [formGroup]="bookForm" (ngSubmit)="OnFormSubmit()">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Book Camp</h2>
+            <div class="form-group">
+            <label for="Capacity">Total No. of Nights</label>
+            <input type="number" class="form-control"  id="Capacity" formControlName="TotalNights" placeholder="Total No. of Nights" [ngClass]="getControlValidationClasses(capacityControl)" required>
+            </div>
+            <div class="form-group">
+                <label for="Capacity">Total No. of Guests</label>
+                <input type="number" class="form-control"  id="guests" formControlName="NumberOfGuests" placeholder="Total No. of Guests" [ngClass]="getControlValidationClasses(guestcontrol)" required>
+                </div>
+            <div class="form-group">
+                <label for="CheckIn">Check In Date</label>
+                <input type="date" class="form-control" id="CheckIn" formControlName="CheckInDate" placeholder="format dd-mm-yyyy" [ngClass]="getControlValidationClasses(checkinControl)" required>
+            </div>
+            <div class="form-group">
+                <label for="CheckOut">Check Out Date</label>
+                <input type="date" class="form-control" id="CheckOut"  formControlName="CheckOutDate" placeholder="format dd-mm-yyyy"  [ngClass]="getControlValidationClasses(checkoutControl)" required>
+            </div>
+            <div class="form-group">
+                <label for="billingaddress">Billing Address</label>
+                <input type="text" class="form-control" id="billingaddress"  formControlName="billingaddress" placeholder="Billing Address" [ngClass]="getControlValidationClasses(billingaddressControl)">
+            </div>
+            <div class="form-group">
+                <label for="state">State</label>
+                <input type="text" class="form-control" id="state"  formControlName="state" placeholder="State" [ngClass]="getControlValidationClasses(stateControl)">
+            </div>
+            <div class="form-group">
+                <label for="country">Country</label>
+                <input type="text" class="form-control" id="country"  formControlName="country" placeholder="Country" [ngClass]="getControlValidationClasses(countryControl)" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="number" class="form-control" id="phone"  formControlName="CellPhone" placeholder="Phone Number" [ngClass]="getControlValidationClasses(phoneControl)" required>
+            </div>
+            <div class="form-group">
+                <label for="zipcode">Zip Code</label>
+                <input type="number" class="form-control" id="zipcode"  formControlName="zipcode" placeholder="Zip Code" [ngClass]="getControlValidationClasses(zipcodeControl)" required>
+            </div>
+        </div>
+      <div class="col-md-6">
+          <h2>Camp Details:</h2>
+        <div *ngIf ="Camp" class="card" style="width: 20rem; margin: 15px;">
+            <img class="card-img-top" [src]='Camp.imageURL' alt="Card image cap">
+            <div class="card-body">
+                <div class="row">
+                <h5 class="card-title">{{Camp.title}}</h5>
+                </div>
+                <p class="card-text">{{Camp.description}}</p>
+                <div>
+                    <table class="table">
+                    <thead>
+                        <tr>
+                        <th scope="col">WeekDay Price</th>
+                        <th scope="col">Weekend Price</th>
+                        <th scope="col">Capacity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        <td>{{Camp.priceforWeekdays | currency:'INR'}}</td>
+                        <td>{{Camp.priceforWeekends | currency:'INR'}}</td>
+                        <td>{{Camp.capacity}}</td>
+                        </tr>
+                    </tbody>
+                    </table>
+                </div>
+            </div>
+         </div>
+    </div>
+    </div>
+    <button type="submit" class="btn btn-primary" >Confirm Booking</button>
+</form>

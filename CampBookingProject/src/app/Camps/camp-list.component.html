@@ -1,0 +1,88 @@
+<!-- Use ngFor to iterate over camps retrieved from database -->
+<div class = "container">
+<form class="needs-validation FilterCamps " novalidate [formGroup]="FilterCamps" (ngSubmit)="onFormSubmit()">
+  <div class="card ">
+    <div class="card-header">
+      Filter Camps Here
+    </div>
+    <div class="card-body">
+      <div class="row filterControls">
+        <div class="col">CheckInDate</div>
+        <div class="col-md-2"></div>
+        <input type="date" id="CheckInDate" [value]='checkIn' formControlName ="checkInDate" [ngClass]="getControlValidationClasses(checkInControl)">
+        <div class="invalid-feedback" >
+          This field is required
+        </div>
+      </div>
+      <div class="row filterControls">
+        <div class="col">CheckOutDate</div>
+        <div class="col-md-2"></div>
+        <input type="date" id="CheckOutDate"  [value]='checkOut' formControlName="checkOutDate" [ngClass]="getControlValidationClasses(checkOutControl)" >
+        <div class="invalid-feedback" >
+          This field is required
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">Capacity</div>
+        <div class="col-md-6">
+          <select formControlName="capacity">
+            <option [value]="0" selected="selected">All</option>
+            <option *ngFor="let capacity of populateFilter()" [value]=capacity>
+              {{capacity}}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" [disabled]="!FilterCamps.valid"class="btn btn-primary mb-0">Search</button>
+      </div>
+    </div>
+  </div>
+  </form>
+</div>
+
+  <div style="float :right; width: 65%;">
+    <!-- use ngIf to filter camps according to max capacity -->
+    <div  *ngIf="!loadingComplete" class="d-flex justify-content-center">
+      <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>  
+    <div class="card-group card-deck" *ngIf="CampList && CampList.length > 0">
+      <div *ngFor="let camp of CampList | paginate : {id: 'pagination',
+      itemsPerPage : 6 , currentPage :page ,totalItems: totalRecords}">
+
+        <div class="card" style="width: 20rem; margin: 15px;">
+          <img class="card-img-top" [src]='camp.imageURL' alt="Card image cap">
+          <div class="card-body">
+            <div class="row">
+              <h5 class="card-title">{{camp.title}}</h5>
+            </div>
+            <p class="card-text desc">{{camp.description}}</p>
+            <div>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">WeekDays Price</th>
+                  <th scope="col">Weekend Price</th>
+                  <th scope="col">Capacity</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{camp.priceforWeekdays | currency:'INR'}}</td>
+                  <td>{{camp.priceforWeekends | currency:'INR'}}</td>
+                  <td>{{camp.capacity}}</td>
+                </tr>
+              </tbody>
+            </table>
+            </div>
+            <div>
+              <button style="margin-left: 40px; margin-top: -20px;" class="btn btn-primary" (click)="bookMyCamp(camp)">Book Camp</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <pagination-controls *ngIf="loadingComplete" id="pagination" maxSize ="5" directionLinks ="true" (pageChange)="page = $event"></pagination-controls>
+  </div>

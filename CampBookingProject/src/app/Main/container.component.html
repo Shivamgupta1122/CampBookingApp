@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+    <a class="navbar-brand" href="#">Welcome!!</a>
+  
+  
+    <div class="collapse navbar-collapse" style="margin-left: 500px;">
+  
+      <ul class="navbar-nav mr-auto ">
+        <li class="nav-item active ">
+          <a class="nav-link text-right" routerLink="/Camp/CreateCamp">Add Camp </a>
+        </li><li class="nav-item active ">
+          <a class="nav-link text-right" routerLink="/allCamps">Camps </a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/allCamps">Manage Camps</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/manageBooking">Manage Booking</a>
+        </li>
+        <li class="nav-item active ">
+          <a class="nav-link text-right" routerLink="/dashboard">Dashboard </a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" *ngIf="!message" routerLink="/AdminLogin"
+            >Admin Login</a>
+        </li>
+        <li class="nav-item active">
+          <a
+            class="nav-link"
+            *ngIf="message"
+            routerLink="/AdminLogin"
+            (click)="logOut()"
+            >Logout</a>
+        </li>
+      </ul>
+  
+  
+    </div>
+  </nav>
+  <div class="container">
+      <router-outlet></router-outlet>
+  </div>

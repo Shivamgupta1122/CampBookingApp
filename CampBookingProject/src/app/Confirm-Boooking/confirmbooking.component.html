@@ -1,0 +1,73 @@
+<div class = "row">
+    <div class="col md-6">
+        <div class="tm-recommended-description-box">
+            <div class="invoice-header">
+                            
+            </div>
+            <div class="invoice">
+                <h5>
+                    Total Amount : {{data.FinalAmount }} INR
+                </h5>
+                <h5>
+                    Total Nights : {{data.TotalNights}} Nights
+                </h5>
+                <h5>
+                    Number of Guests : {{data.NumberOfGuests}} Nights
+                </h5>
+                <p>
+                    CheckIn Date: {{data.CheckInDate}}
+                </p>
+                <p>
+                    CheckOut Date: {{data.CheckOutDate}}
+                </p>
+                <p>
+                    Billing Address: {{data.billingaddress}}
+                </p>
+                <p>
+                    State : {{data.state}}
+                </p>
+                <p>
+                    Country : {{data.country}}
+                </p>
+                <p>
+                    ZipCode : {{data.zipcode}}
+                </p>
+                <p>
+                    PhoneNumber : {{data.CellPhone}}
+                </p>
+            </div>
+            <div class="btn-div">
+                <button type="submit" class="btn btn-primary" id="btn-primary" (click) = "bookCamp(data)">Submit Booking</button>
+                <button type="submit" class="btn btn-primary ml-2" id="btn-primary"(click)="editCamp(camp)">Edit Booking</button>
+                <button type="submit" class="btn btn-danger ml-2" id="btn-primary" routerLink = "/dashboard">Cancel Booking</button>
+            </div>
+        </div>
+    </div>
+   <div class="col md-6">
+    <div class="tm-recommended-place" >
+       
+        <div class="tm-recommended-price-box">
+
+             <div class="camp-header">
+
+             <h2>{{camp.title}}</h2> 
+
+            </div> 
+            <div >
+                <img [src]="camp.imageURL" id="camp-image" style="width: 20rem; margin: 15px;">
+            </div>
+            <div class="">
+                <div class="camp-details">
+                    <h3 class="tm-recommended-title">{{camp.title}}</h3>
+                    <p class="tm-text-highlight">Max Capacity: {{camp.capacity}}</p>
+                    <p class="tm-text-gray">
+                        {{camp.description}}
+                    </p>   
+                </div> 
+            </div>
+        </div>                        
+    </div>
+   </div> 
+</div>
+
+<h1>Booking Confirm works</h1>
